@@ -15,17 +15,17 @@
 | ALUKA-P0 | Aluka.WinForms build zerado | ✅ OK | Crítica | Resolvido 2026-10-22: `dotnet build Aluka.sln` → 0 errors. Ver business.md para causa raiz. |
 | ALUKA-P1 | Core projects (Domain/Application/IoC) compilam | ✅ OK | Alta | 0 errors, apenas warning NU1903 AutoMapper |
 | ALUKA-P3 | AutoMapper vulnerability (NU1903) | ⚠️ Warning | Média | Pendente upgrade para versão segura |
-| ALUKA-P4 | R01 Filtro de Apps no Editor | ⬜ Pendente | Alta | Requer Visual Studio Designer modo visual |
-| ALUKA-P5 | R02 Gestão de Histórico | ⬜ Pendente | Alta | Requer Visual Studio Designer modo visual |
+| ALUKA-P4 | R01 Filtro de Apps no Editor | 👀 Parcial | Alta | AppsView já tem txtSearch funcional; falta confirmar se cobre o pedido completo do roadmap |
+| ALUKA-P5 | R02 Gestão de Histórico | 👀 Parcial | Alta | HistoryView já tem filtros + delete em lote + limpar tudo; falta confirmar se cobre o pedido completo |
 | ALUKA-P6 | R03 Comportamento de Abertura | ⬜ Pendente | Alta | Requer Windows Process Manager refactor |
-| ALUKA-P7 | R04 Notificações Windows | ⬜ Pendente | Alta | Requer Microsoft.Toolkit.Uwp.Notifications |
+| ALUKA-P7 | R04 Notificações Windows | ⬜ Pendente | Alta | UI já existe em RuleEditorForm (grpNotifications); falta confirmar wiring do backend com Microsoft.Toolkit.Uwp.Notifications |
+| ALUKA-P8 | Shell único + navegação in-place + tema visual | ✅ OK | Alta | Resolvido 2026-10-22: MainForm agora é shell (sidebar + content panel), RulesForm/AppsForm/HistoryForm viraram UserControls (Views/), Theme.cs centraliza cores/tipografia/espaçamento. Ver business.md. |
 
 **Próximas mexidas (Brainstorming/ideias):**
-- ALUKA-P0 resolvido: implementar R01-R04 usando VS Designer interativo (ou hand-edit cuidadoso — ver Canon 1 atualizado em business.md)
+- Testar manualmente o clique em cada item da sidebar (Início/Regras/Aplicações/Histórico) e confirmar que os dados carregam e que o diálogo de editar regra ainda abre centrado sobre o shell
 - Upgrade AutoMapper de 12.0.1 para versão mais segura
-- Documentar todas as mudanças em business.md com proveniência
-- Refatorar HistoryForm para adicionar gestão de histórico (batch delete)
-- Verificar se existe git remoto para repositórios
+- Revisar ALUKA-P4/P5/P7 com mais detalhe para decidir se já estão "fechados" ou se falta algo do roadmap original
+- (Opcional, baixa prioridade) Substituir emojis em botões/labels por ícones Segoe Fluent Icons — decidido adiar por risco de codepoint errado (glyph invisível)
 
 **Flow de decisão:**
 1. Idea/dúvida nasce no context.md (nota de sessão) ou plan.md (backlog/brainstorming)
