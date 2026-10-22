@@ -4,8 +4,10 @@ partial class RulesView
 {
     private System.ComponentModel.IContainer components = null;
 
+    private System.Windows.Forms.Panel pnlHeader;
     private System.Windows.Forms.Label lblTitle;
     private System.Windows.Forms.DataGridView dgvRules;
+    private System.Windows.Forms.Panel pnlActions;
     private System.Windows.Forms.Button btnAdd;
     private System.Windows.Forms.Button btnEdit;
     private System.Windows.Forms.Button btnToggle;
@@ -32,8 +34,10 @@ partial class RulesView
 
     private void InitializeComponent()
     {
+        this.pnlHeader = new System.Windows.Forms.Panel();
         this.lblTitle = new System.Windows.Forms.Label();
         this.dgvRules = new System.Windows.Forms.DataGridView();
+        this.pnlActions = new System.Windows.Forms.Panel();
         this.btnAdd = new System.Windows.Forms.Button();
         this.btnEdit = new System.Windows.Forms.Button();
         this.btnToggle = new System.Windows.Forms.Button();
@@ -47,17 +51,12 @@ partial class RulesView
         this.colEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
         this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
 
+        this.pnlHeader.SuspendLayout();
+        this.pnlActions.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).BeginInit();
         this.SuspendLayout();
 
-        // lblTitle
-        this.lblTitle.AutoSize = true;
-        this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-        this.lblTitle.Location = new System.Drawing.Point(12, 9);
-        this.lblTitle.Name = "lblTitle";
-        this.lblTitle.Text = "Regras de Agendamento";
-
-        // dgvRules
+        // dgvRules (Fill — added first so Top/Bottom docked panels claim their edges around it)
         this.dgvRules.AllowUserToAddRows = false;
         this.dgvRules.AllowUserToDeleteRows = false;
         this.dgvRules.AllowUserToResizeRows = false;
@@ -73,13 +72,12 @@ partial class RulesView
             this.colEnd,
             this.colId
         });
-        this.dgvRules.Location = new System.Drawing.Point(12, 46);
+        this.dgvRules.Dock = System.Windows.Forms.DockStyle.Fill;
         this.dgvRules.MultiSelect = false;
         this.dgvRules.Name = "dgvRules";
         this.dgvRules.ReadOnly = true;
         this.dgvRules.RowHeadersVisible = false;
         this.dgvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-        this.dgvRules.Size = new System.Drawing.Size(760, 320);
         this.dgvRules.TabIndex = 0;
 
         // colStatus
@@ -124,62 +122,79 @@ partial class RulesView
         this.colId.ReadOnly = true;
         this.colId.Visible = false;
 
+        // pnlHeader
+        this.pnlHeader.Controls.Add(this.lblTitle);
+        this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+        this.pnlHeader.Name = "pnlHeader";
+        this.pnlHeader.Size = new System.Drawing.Size(784, 48);
+
+        // lblTitle
+        this.lblTitle.AutoSize = true;
+        this.lblTitle.Location = new System.Drawing.Point(0, 8);
+        this.lblTitle.Name = "lblTitle";
+        this.lblTitle.Text = "Regras de Agendamento";
+
+        // pnlActions
+        this.pnlActions.Controls.Add(this.lblStatus);
+        this.pnlActions.Controls.Add(this.btnDelete);
+        this.pnlActions.Controls.Add(this.btnToggle);
+        this.pnlActions.Controls.Add(this.btnEdit);
+        this.pnlActions.Controls.Add(this.btnAdd);
+        this.pnlActions.Dock = System.Windows.Forms.DockStyle.Bottom;
+        this.pnlActions.Name = "pnlActions";
+        this.pnlActions.Size = new System.Drawing.Size(784, 68);
+
         // btnAdd
-        this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F);
-        this.btnAdd.Location = new System.Drawing.Point(12, 372);
+        this.btnAdd.Location = new System.Drawing.Point(0, 8);
         this.btnAdd.Name = "btnAdd";
-        this.btnAdd.Size = new System.Drawing.Size(130, 35);
-        this.btnAdd.Text = "Add";
+        this.btnAdd.Size = new System.Drawing.Size(120, 36);
+        this.btnAdd.Text = "Adicionar";
         this.btnAdd.UseVisualStyleBackColor = true;
         this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
 
         // btnEdit
-        this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 10F);
-        this.btnEdit.Location = new System.Drawing.Point(148, 372);
+        this.btnEdit.Location = new System.Drawing.Point(132, 8);
         this.btnEdit.Name = "btnEdit";
-        this.btnEdit.Size = new System.Drawing.Size(110, 35);
-        this.btnEdit.Text = "Edit";
+        this.btnEdit.Size = new System.Drawing.Size(110, 36);
+        this.btnEdit.Text = "Editar";
         this.btnEdit.UseVisualStyleBackColor = true;
         this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
 
         // btnToggle
-        this.btnToggle.Font = new System.Drawing.Font("Segoe UI", 10F);
-        this.btnToggle.Location = new System.Drawing.Point(244, 372);
+        this.btnToggle.Location = new System.Drawing.Point(254, 8);
         this.btnToggle.Name = "btnToggle";
-        this.btnToggle.Size = new System.Drawing.Size(130, 35);
-        this.btnToggle.Text = "Toggle";
+        this.btnToggle.Size = new System.Drawing.Size(130, 36);
+        this.btnToggle.Text = "Ativar/Desativar";
         this.btnToggle.UseVisualStyleBackColor = true;
         this.btnToggle.Click += new System.EventHandler(this.BtnToggle_Click);
 
         // btnDelete
-        this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 10F);
-        this.btnDelete.Location = new System.Drawing.Point(380, 372);
+        this.btnDelete.Location = new System.Drawing.Point(396, 8);
         this.btnDelete.Name = "btnDelete";
-        this.btnDelete.Size = new System.Drawing.Size(110, 35);
-        this.btnDelete.Text = "Delete";
+        this.btnDelete.Size = new System.Drawing.Size(110, 36);
+        this.btnDelete.Text = "Eliminar";
         this.btnDelete.UseVisualStyleBackColor = true;
         this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
 
         // lblStatus
         this.lblStatus.AutoSize = true;
-        this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-        this.lblStatus.Location = new System.Drawing.Point(12, 415);
-        this.lblStatus.Text = "Ready to load...";
+        this.lblStatus.Location = new System.Drawing.Point(0, 50);
+        this.lblStatus.Name = "lblStatus";
+        this.lblStatus.Text = "Pronto para carregar...";
 
         // RulesView
-        this.Controls.Add(this.lblStatus);
-        this.Controls.Add(this.btnDelete);
-        this.Controls.Add(this.btnToggle);
-        this.Controls.Add(this.btnEdit);
-        this.Controls.Add(this.btnAdd);
         this.Controls.Add(this.dgvRules);
-        this.Controls.Add(this.lblTitle);
+        this.Controls.Add(this.pnlActions);
+        this.Controls.Add(this.pnlHeader);
         this.Name = "RulesView";
         this.Size = new System.Drawing.Size(784, 441);
         this.Load += new System.EventHandler(this.RulesView_Load);
 
+        this.pnlHeader.ResumeLayout(false);
+        this.pnlHeader.PerformLayout();
+        this.pnlActions.ResumeLayout(false);
+        this.pnlActions.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)(this.dgvRules)).EndInit();
         this.ResumeLayout(false);
-        this.PerformLayout();
     }
 }

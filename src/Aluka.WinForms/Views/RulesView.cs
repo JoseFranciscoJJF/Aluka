@@ -1,6 +1,7 @@
 using Aluka.Application.DTOs;
 using Aluka.Application.Services;
 using Aluka.Domain.Enums;
+using Aluka.WinForms.UI;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aluka.WinForms.Views;
@@ -15,6 +16,25 @@ public partial class RulesView : UserControl
         _serviceProvider = serviceProvider;
         _ruleService = serviceProvider.GetService<IRuleService>();
         InitializeComponent();
+
+        BackColor = Theme.Colors.Background;
+        pnlHeader.BackColor = Theme.Colors.Background;
+        pnlHeader.Padding = new Padding(0, Theme.Spacing.S, 0, Theme.Spacing.S);
+        pnlActions.BackColor = Theme.Colors.Background;
+        pnlActions.Padding = new Padding(0, Theme.Spacing.S, 0, 0);
+
+        lblTitle.Font = Theme.Fonts.SubHeading;
+        lblTitle.ForeColor = Theme.Colors.TextPrimary;
+
+        Theme.StyleGrid(dgvRules);
+
+        Theme.StylePrimaryButton(btnAdd);
+        Theme.StyleSecondaryButton(btnEdit);
+        Theme.StyleSecondaryButton(btnToggle);
+        Theme.StyleSecondaryButton(btnDelete);
+
+        lblStatus.Font = Theme.Fonts.Caption;
+        lblStatus.ForeColor = Theme.Colors.TextSecondary;
     }
 
     public async Task RefreshAsync()
