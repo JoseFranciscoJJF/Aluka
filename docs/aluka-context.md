@@ -131,12 +131,19 @@ O utilizador enviou um prompt estruturado para outro modelo de IA (como o Claude
 
 ---
 
-**PONTO DE RETOMA (ler primeiro):**
-Estado atual: ALUKA-P0 (build) e ALUKA-P8 (modernização UI/UX — shell único, navegação in-place, tema visual) ambos RESOLVIDOS/✅ em 22 Out 2026. `dotnet build Aluka.sln --no-incremental` → 0 Error(s), 10 Warning(s) (todos NU1903/AutoMapper, inalterado). App arranca sem crash. Detalhes completos na secção "Sessão: 22 de Outubro de 2026 (continuação) — Modernização UI/UX (ALUKA-P8)" acima e em `aluka-business.md`.
+**Update (mesma sessão, pós ALUKA-P8):** utilizador confirmou as duas próximas fases do roadmap imediato (ainda sem trabalho de código realizado, só intenção registada): (1) publicar o projeto no GitHub — repo local já existe, falta remote; (2) ajustar mais os contrastes visuais do `Theme.cs` — a passagem de tema da sessão anterior focou-se em ter cor/espaçamento *deliberados* em vez de defaults do sistema, mas não validou contraste (WCAG ou equivalente) entre texto/fundo em todas as combinações (ex: `SidebarText`/`SidebarItemHover`, `TextSecondary`/`Background`). Ambos os itens registados em `aluka-plan.md` §"Próximas mexidas" como backlog, não como decisão fechada — nenhuma das duas fases foi ainda iniciada.
 
-Ainda por fazer:
-- **Verificação manual de runtime (prioridade imediata):** clicar em cada item da sidebar, confirmar dados a carregar em cada view, confirmar que o diálogo de editar regra (`RuleEditorForm`) ainda abre corretamente centrado sobre o shell e fecha sem problemas, testar redimensionar a janela.
-- Decidir se ALUKA-P4 (filtro de apps)/P5 (gestão de histórico)/P7 (notificações Windows) já estão suficientemente cobertos pelo que já existe em `AppsView`/`HistoryView`/`RuleEditorForm`, ou se falta trabalho de roadmap.
+---
+
+**PONTO DE RETOMA (ler primeiro):**
+Estado atual: ALUKA-P0 (build) e ALUKA-P8 (modernização UI/UX — shell único, navegação in-place, tema visual) ambos RESOLVIDOS/✅ em 22 Out 2026. `dotnet build Aluka.sln --no-incremental` → 0 Error(s), 24 Warning(s) (14 CA1416 pré-existentes em `Aluka.Infrastructure` + 10 NU1903 AutoMapper — nenhum introduzido pela modernização UI/UX). App arranca sem crash. Detalhes completos na secção "Sessão: 22 de Outubro de 2026 (continuação) — Modernização UI/UX (ALUKA-P8)" acima e em `aluka-business.md`.
+
+Duas próximas fases combinadas com o utilizador (ainda não iniciadas):
+1. **Publicar no GitHub** — criar repo remoto, `git remote add origin`, decidir visibilidade, rever `.gitignore`, primeiro push. Repo local (`git init`) já existe desde a sessão ALUKA-P8, sem remote configurado.
+2. **Ajustar contrastes visuais** — rever `src/Aluka.WinForms/UI/Theme.cs` (paleta de cores) para garantir contraste adequado texto/fundo em todas as combinações usadas (sidebar ativa/hover, texto secundário sobre fundo, bordas de botões secundários). Ainda não há critério de aceitação definido (ex: WCAG AA) nem comparação feita — a decidir na próxima sessão de trabalho real sobre isto.
+
+Outros itens ainda por fazer (herdados, sem mudança):
+- Verificação manual de runtime: clicar em cada item da sidebar, confirmar dados a carregar, diálogo de editar regra a abrir bem, redimensionamento da janela sem quebrar layout.
+- Decidir se ALUKA-P4/P5/P7 já estão suficientemente cobertos ou se falta roadmap.
 - AutoMapper 12.0.1 continua com vulnerability NU1903 pendente de upgrade.
-- (Baixa prioridade) Reconsiderar troca de emojis por ícones Segoe Fluent Icons, se o utilizador quiser investir nisso com codepoints verificados.
-- Git local foi criado nesta sessão (antes não existia) — sem remoto configurado; considerar se o utilizador quer adicionar um remote (GitHub/Azure DevOps/etc.) para backup fora da máquina.
+- (Baixa prioridade) Reconsiderar troca de emojis por ícones Segoe Fluent Icons, com codepoints verificados.

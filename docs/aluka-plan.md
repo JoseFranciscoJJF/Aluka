@@ -26,6 +26,8 @@
 - Upgrade AutoMapper de 12.0.1 para versão mais segura
 - Revisar ALUKA-P4/P5/P7 com mais detalhe para decidir se já estão "fechados" ou se falta algo do roadmap original
 - (Opcional, baixa prioridade) Substituir emojis em botões/labels por ícones Segoe Fluent Icons — decidido adiar por risco de codepoint errado (glyph invisível)
+- **Próxima fase 1 — Publicar no GitHub:** repositório local já existe (`git init` feito em 22 Out 2026, sem remote). Falta: criar repo remoto no GitHub, `git remote add origin ...`, decidir público/privado, rever `.gitignore` (já cobre bin/obj/.vs/logs/*.db), primeiro `git push`.
+- **Próxima fase 2 — Ajustar contrastes visuais:** Theme.cs (paleta atual) precisa de revisão de contraste — por rever: texto sobre `SidebarItemHover`/`SidebarItemActive`, `TextSecondary` sobre `Background`, bordas de `StyleSecondaryButton` sobre `Surface`. Ainda não há WCAG/contraste mínimo validado nesta sessão — item em aberto, não decisão fechada.
 
 **Flow de decisão:**
 1. Idea/dúvida nasce no context.md (nota de sessão) ou plan.md (backlog/brainstorming)
