@@ -1,5 +1,6 @@
 using Aluka.Application.DTOs;
 using Aluka.Application.Services;
+using Aluka.WinForms.UI;
 using Microsoft.Extensions.DependencyInjection;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -39,6 +40,23 @@ public partial class AppsView : UserControl
 
         // Desativar temporariamente o TextChanged durante a inicialização
         this.txtSearch.TextChanged -= TxtSearch_TextChanged!;
+
+        BackColor = Theme.Colors.Background;
+        pnlHeader.BackColor = Theme.Colors.Background;
+        pnlHeader.Padding = new Padding(0, Theme.Spacing.S, 0, Theme.Spacing.S);
+        pnlActions.BackColor = Theme.Colors.Background;
+        pnlActions.Padding = new Padding(0, Theme.Spacing.S, 0, 0);
+
+        lblTitle.Font = Theme.Fonts.SubHeading;
+        lblTitle.ForeColor = Theme.Colors.TextPrimary;
+
+        txtSearch.Font = Theme.Fonts.Body;
+
+        Theme.StyleGrid(dgvApps);
+        Theme.StyleSecondaryButton(btnRefresh);
+
+        lblStatus.Font = Theme.Fonts.Caption;
+        lblStatus.ForeColor = Theme.Colors.TextSecondary;
     }
 
     public async Task RefreshAsync()
