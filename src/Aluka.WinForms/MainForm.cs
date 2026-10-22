@@ -1,3 +1,4 @@
+using Aluka.WinForms.UI;
 using Aluka.WinForms.Views;
 
 namespace Aluka.WinForms;
@@ -11,6 +12,13 @@ public partial class MainForm : Form
     {
         _serviceProvider = serviceProvider;
         InitializeComponent();
+
+        BackColor = Theme.Colors.Background;
+        pnlContent.BackColor = Theme.Colors.Background;
+        pnlContent.Padding = new Padding(Theme.Spacing.L);
+        statusStrip.BackColor = Theme.Colors.Surface;
+        statusStrip.SizingGrip = false;
+        toolStripStatusLabel.ForeColor = Theme.Colors.TextSecondary;
 
         navSidebar.NavigationRequested += NavSidebar_NavigationRequested;
 

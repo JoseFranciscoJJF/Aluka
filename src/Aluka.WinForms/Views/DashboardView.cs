@@ -1,4 +1,5 @@
 using Aluka.Application.Services;
+using Aluka.WinForms.UI;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aluka.WinForms.Views;
@@ -15,6 +16,25 @@ public partial class DashboardView : UserControl
         _appService = serviceProvider.GetService<IAppService>();
         _ruleService = serviceProvider.GetService<IRuleService>();
         InitializeComponent();
+
+        BackColor = Theme.Colors.Background;
+
+        lblWelcome.Font = Theme.Fonts.Heading;
+        lblWelcome.ForeColor = Theme.Colors.TextPrimary;
+
+        lblSubtitle.Font = Theme.Fonts.Body;
+        lblSubtitle.ForeColor = Theme.Colors.TextSecondary;
+
+        Theme.StyleCard(cardStats);
+        lblStatsCaption.Font = Theme.Fonts.Caption;
+        lblStatsCaption.ForeColor = Theme.Colors.TextSecondary;
+        lblStats.Font = Theme.Fonts.SubHeading;
+        lblStats.ForeColor = Theme.Colors.TextPrimary;
+
+        Theme.StylePrimaryButton(btnScanApps);
+
+        lblScanStatus.Font = Theme.Fonts.Caption;
+        lblScanStatus.ForeColor = Theme.Colors.TextSecondary;
     }
 
     public async Task RefreshAsync()
