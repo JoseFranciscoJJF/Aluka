@@ -32,7 +32,7 @@ public partial class NavSidebar : UserControl
     {
         foreach (var button in _navButtons)
         {
-            StyleNavButton(button, active: (string)button.Tag == key);
+            StyleNavButton(button, active: (string?)button.Tag == key);
         }
     }
 
