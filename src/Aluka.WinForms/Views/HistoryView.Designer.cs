@@ -15,9 +15,11 @@ partial class HistoryView
 
     private void InitializeComponent()
     {
+        this.pnlHeader = new System.Windows.Forms.Panel();
         this.lblTitle = new System.Windows.Forms.Label();
         this.lblStats = new System.Windows.Forms.Label();
         this.dgvHistory = new System.Windows.Forms.DataGridView();
+        this.pnlActions = new System.Windows.Forms.Panel();
         this.btnRefresh = new System.Windows.Forms.Button();
         this.btnDeleteSelected = new System.Windows.Forms.Button();
         this.btnClearAll = new System.Windows.Forms.Button();
@@ -43,99 +45,13 @@ partial class HistoryView
         this.colDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
         this.colError = new System.Windows.Forms.DataGridViewTextBoxColumn();
 
+        this.pnlHeader.SuspendLayout();
+        this.pnlActions.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
         this.grpFilters.SuspendLayout();
         this.SuspendLayout();
 
-        // lblTitle
-        this.lblTitle.AutoSize = true;
-        this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-        this.lblTitle.Location = new System.Drawing.Point(12, 9);
-        this.lblTitle.Name = "lblTitle";
-        this.lblTitle.Size = new System.Drawing.Size(149, 25);
-        this.lblTitle.Text = "📊 Histórico";
-
-        // lblStats
-        this.lblStats.AutoSize = true;
-        this.lblStats.Font = new System.Drawing.Font("Segoe UI", 10F);
-        this.lblStats.Location = new System.Drawing.Point(12, 40);
-        this.lblStats.Name = "lblStats";
-        this.lblStats.Size = new System.Drawing.Size(164, 19);
-        this.lblStats.Text = "Total: 0 | ✅ 0 | ❌ 0 | ⏭️ 0";
-
-        // grpFilters
-        this.grpFilters.Controls.Add(this.lblStatusFilter);
-        this.grpFilters.Controls.Add(this.cmbStatusFilter);
-        this.grpFilters.Controls.Add(this.lblRuleFilter);
-        this.grpFilters.Controls.Add(this.cmbRuleFilter);
-        this.grpFilters.Controls.Add(this.lblDateRange);
-        this.grpFilters.Controls.Add(this.dtpStartDate);
-        this.grpFilters.Controls.Add(this.dtpEndDate);
-        this.grpFilters.Controls.Add(this.lblTo);
-        this.grpFilters.Location = new System.Drawing.Point(12, 70);
-        this.grpFilters.Name = "grpFilters";
-        this.grpFilters.Size = new System.Drawing.Size(760, 80);
-        this.grpFilters.Text = "🔍 Filtros";
-
-        // lblStatusFilter
-        this.lblStatusFilter.AutoSize = true;
-        this.lblStatusFilter.Location = new System.Drawing.Point(6, 22);
-        this.lblStatusFilter.Name = "lblStatusFilter";
-        this.lblStatusFilter.Size = new System.Drawing.Size(42, 15);
-        this.lblStatusFilter.Text = "Status:";
-
-        // cmbStatusFilter
-        this.cmbStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-        this.cmbStatusFilter.Location = new System.Drawing.Point(54, 19);
-        this.cmbStatusFilter.Name = "cmbStatusFilter";
-        this.cmbStatusFilter.Size = new System.Drawing.Size(120, 23);
-        this.cmbStatusFilter.SelectedIndexChanged += new System.EventHandler(this.CmbStatusFilter_SelectedIndexChanged);
-
-        // lblRuleFilter
-        this.lblRuleFilter.AutoSize = true;
-        this.lblRuleFilter.Location = new System.Drawing.Point(190, 22);
-        this.lblRuleFilter.Name = "lblRuleFilter";
-        this.lblRuleFilter.Size = new System.Drawing.Size(44, 15);
-        this.lblRuleFilter.Text = "Regra:";
-
-        // cmbRuleFilter
-        this.cmbRuleFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-        this.cmbRuleFilter.Location = new System.Drawing.Point(240, 19);
-        this.cmbRuleFilter.Name = "cmbRuleFilter";
-        this.cmbRuleFilter.Size = new System.Drawing.Size(200, 23);
-        this.cmbRuleFilter.SelectedIndexChanged += new System.EventHandler(this.CmbRuleFilter_SelectedIndexChanged);
-
-        // lblDateRange
-        this.lblDateRange.AutoSize = true;
-        this.lblDateRange.Location = new System.Drawing.Point(460, 22);
-        this.lblDateRange.Name = "lblDateRange";
-        this.lblDateRange.Size = new System.Drawing.Size(73, 15);
-        this.lblDateRange.Text = "Período:";
-
-        // dtpStartDate
-        this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-        this.dtpStartDate.Location = new System.Drawing.Point(539, 19);
-        this.dtpStartDate.Name = "dtpStartDate";
-        this.dtpStartDate.ShowCheckBox = true;
-        this.dtpStartDate.Size = new System.Drawing.Size(100, 23);
-        this.dtpStartDate.ValueChanged += new System.EventHandler(this.DtpStartDate_ValueChanged);
-
-        // lblTo
-        this.lblTo.AutoSize = true;
-        this.lblTo.Location = new System.Drawing.Point(645, 23);
-        this.lblTo.Name = "lblTo";
-        this.lblTo.Size = new System.Drawing.Size(19, 15);
-        this.lblTo.Text = "a";
-
-        // dtpEndDate
-        this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-        this.dtpEndDate.Location = new System.Drawing.Point(670, 19);
-        this.dtpEndDate.Name = "dtpEndDate";
-        this.dtpEndDate.ShowCheckBox = true;
-        this.dtpEndDate.Size = new System.Drawing.Size(100, 23);
-        this.dtpEndDate.ValueChanged += new System.EventHandler(this.DtpEndDate_ValueChanged);
-
-        // dgvHistory
+        // dgvHistory (Fill — added first)
         this.dgvHistory.AllowUserToAddRows = false;
         this.dgvHistory.AllowUserToDeleteRows = false;
         this.dgvHistory.AllowUserToResizeRows = false;
@@ -153,11 +69,10 @@ partial class HistoryView
             this.colDuration,
             this.colError
         });
-        this.dgvHistory.Location = new System.Drawing.Point(12, 160);
+        this.dgvHistory.Dock = System.Windows.Forms.DockStyle.Fill;
         this.dgvHistory.Name = "dgvHistory";
         this.dgvHistory.RowHeadersVisible = false;
         this.dgvHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-        this.dgvHistory.Size = new System.Drawing.Size(760, 280);
         this.dgvHistory.TabIndex = 0;
 
         // colSelect
@@ -213,64 +128,156 @@ partial class HistoryView
         this.colError.ReadOnly = true;
         this.colError.Width = 120;
 
+        // pnlActions (Bottom)
+        this.pnlActions.Controls.Add(this.lblStatus);
+        this.pnlActions.Controls.Add(this.btnClearAll);
+        this.pnlActions.Controls.Add(this.btnDeleteSelected);
+        this.pnlActions.Controls.Add(this.btnRefresh);
+        this.pnlActions.Dock = System.Windows.Forms.DockStyle.Bottom;
+        this.pnlActions.Name = "pnlActions";
+        this.pnlActions.Size = new System.Drawing.Size(784, 68);
+
         // btnRefresh
-        this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 10F);
-        this.btnRefresh.Location = new System.Drawing.Point(12, 450);
+        this.btnRefresh.Location = new System.Drawing.Point(0, 8);
         this.btnRefresh.Name = "btnRefresh";
-        this.btnRefresh.Size = new System.Drawing.Size(120, 35);
+        this.btnRefresh.Size = new System.Drawing.Size(120, 36);
         this.btnRefresh.Text = "🔄 Atualizar";
         this.btnRefresh.UseVisualStyleBackColor = true;
         this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
 
         // btnDeleteSelected
-        this.btnDeleteSelected.Font = new System.Drawing.Font("Segoe UI", 10F);
-        this.btnDeleteSelected.Location = new System.Drawing.Point(140, 450);
+        this.btnDeleteSelected.Location = new System.Drawing.Point(132, 8);
         this.btnDeleteSelected.Name = "btnDeleteSelected";
-        this.btnDeleteSelected.Size = new System.Drawing.Size(140, 35);
+        this.btnDeleteSelected.Size = new System.Drawing.Size(170, 36);
         this.btnDeleteSelected.Text = "🗑️ Eliminar Selecionados";
         this.btnDeleteSelected.UseVisualStyleBackColor = true;
         this.btnDeleteSelected.Click += new System.EventHandler(this.BtnDeleteSelected_Click);
 
         // btnClearAll
-        this.btnClearAll.Font = new System.Drawing.Font("Segoe UI", 10F);
-        this.btnClearAll.Location = new System.Drawing.Point(290, 450);
+        this.btnClearAll.Location = new System.Drawing.Point(314, 8);
         this.btnClearAll.Name = "btnClearAll";
-        this.btnClearAll.Size = new System.Drawing.Size(140, 35);
+        this.btnClearAll.Size = new System.Drawing.Size(140, 36);
         this.btnClearAll.Text = "🧹 Limpar Todo";
         this.btnClearAll.UseVisualStyleBackColor = true;
         this.btnClearAll.Click += new System.EventHandler(this.BtnClearAll_Click);
 
         // lblStatus
         this.lblStatus.AutoSize = true;
-        this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-        this.lblStatus.Location = new System.Drawing.Point(12, 495);
+        this.lblStatus.Location = new System.Drawing.Point(0, 50);
         this.lblStatus.Name = "lblStatus";
-        this.lblStatus.Size = new System.Drawing.Size(124, 15);
         this.lblStatus.Text = "Pronto para carregar...";
 
+        // grpFilters (Top)
+        this.grpFilters.Controls.Add(this.lblStatusFilter);
+        this.grpFilters.Controls.Add(this.cmbStatusFilter);
+        this.grpFilters.Controls.Add(this.lblRuleFilter);
+        this.grpFilters.Controls.Add(this.cmbRuleFilter);
+        this.grpFilters.Controls.Add(this.lblDateRange);
+        this.grpFilters.Controls.Add(this.dtpStartDate);
+        this.grpFilters.Controls.Add(this.dtpEndDate);
+        this.grpFilters.Controls.Add(this.lblTo);
+        this.grpFilters.Dock = System.Windows.Forms.DockStyle.Top;
+        this.grpFilters.Name = "grpFilters";
+        this.grpFilters.Size = new System.Drawing.Size(784, 80);
+        this.grpFilters.Text = "🔍 Filtros";
+
+        // lblStatusFilter
+        this.lblStatusFilter.AutoSize = true;
+        this.lblStatusFilter.Location = new System.Drawing.Point(16, 30);
+        this.lblStatusFilter.Name = "lblStatusFilter";
+        this.lblStatusFilter.Text = "Status:";
+
+        // cmbStatusFilter
+        this.cmbStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        this.cmbStatusFilter.Location = new System.Drawing.Point(64, 27);
+        this.cmbStatusFilter.Name = "cmbStatusFilter";
+        this.cmbStatusFilter.Size = new System.Drawing.Size(120, 23);
+        this.cmbStatusFilter.SelectedIndexChanged += new System.EventHandler(this.CmbStatusFilter_SelectedIndexChanged);
+
+        // lblRuleFilter
+        this.lblRuleFilter.AutoSize = true;
+        this.lblRuleFilter.Location = new System.Drawing.Point(200, 30);
+        this.lblRuleFilter.Name = "lblRuleFilter";
+        this.lblRuleFilter.Text = "Regra:";
+
+        // cmbRuleFilter
+        this.cmbRuleFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+        this.cmbRuleFilter.Location = new System.Drawing.Point(250, 27);
+        this.cmbRuleFilter.Name = "cmbRuleFilter";
+        this.cmbRuleFilter.Size = new System.Drawing.Size(200, 23);
+        this.cmbRuleFilter.SelectedIndexChanged += new System.EventHandler(this.CmbRuleFilter_SelectedIndexChanged);
+
+        // lblDateRange
+        this.lblDateRange.AutoSize = true;
+        this.lblDateRange.Location = new System.Drawing.Point(470, 30);
+        this.lblDateRange.Name = "lblDateRange";
+        this.lblDateRange.Text = "Período:";
+
+        // dtpStartDate
+        this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+        this.dtpStartDate.Location = new System.Drawing.Point(549, 27);
+        this.dtpStartDate.Name = "dtpStartDate";
+        this.dtpStartDate.ShowCheckBox = true;
+        this.dtpStartDate.Size = new System.Drawing.Size(100, 23);
+        this.dtpStartDate.ValueChanged += new System.EventHandler(this.DtpStartDate_ValueChanged);
+
+        // lblTo
+        this.lblTo.AutoSize = true;
+        this.lblTo.Location = new System.Drawing.Point(655, 31);
+        this.lblTo.Name = "lblTo";
+        this.lblTo.Text = "a";
+
+        // dtpEndDate
+        this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+        this.dtpEndDate.Location = new System.Drawing.Point(680, 27);
+        this.dtpEndDate.Name = "dtpEndDate";
+        this.dtpEndDate.ShowCheckBox = true;
+        this.dtpEndDate.Size = new System.Drawing.Size(100, 23);
+        this.dtpEndDate.ValueChanged += new System.EventHandler(this.DtpEndDate_ValueChanged);
+
+        // pnlHeader (Top, added last among Top siblings so it stays above grpFilters)
+        this.pnlHeader.Controls.Add(this.lblStats);
+        this.pnlHeader.Controls.Add(this.lblTitle);
+        this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+        this.pnlHeader.Name = "pnlHeader";
+        this.pnlHeader.Size = new System.Drawing.Size(784, 64);
+
+        // lblTitle
+        this.lblTitle.AutoSize = true;
+        this.lblTitle.Location = new System.Drawing.Point(0, 8);
+        this.lblTitle.Name = "lblTitle";
+        this.lblTitle.Text = "📊 Histórico";
+
+        // lblStats
+        this.lblStats.AutoSize = true;
+        this.lblStats.Location = new System.Drawing.Point(0, 38);
+        this.lblStats.Name = "lblStats";
+        this.lblStats.Text = "Total: 0 | ✅ 0 | ❌ 0 | ⏭️ 0";
+
         // HistoryView
-        this.Controls.Add(this.lblStatus);
-        this.Controls.Add(this.btnClearAll);
-        this.Controls.Add(this.btnDeleteSelected);
-        this.Controls.Add(this.btnRefresh);
         this.Controls.Add(this.dgvHistory);
+        this.Controls.Add(this.pnlActions);
         this.Controls.Add(this.grpFilters);
-        this.Controls.Add(this.lblStats);
-        this.Controls.Add(this.lblTitle);
+        this.Controls.Add(this.pnlHeader);
         this.Name = "HistoryView";
         this.Size = new System.Drawing.Size(784, 520);
         this.Load += new System.EventHandler(this.HistoryView_Load);
 
+        this.pnlHeader.ResumeLayout(false);
+        this.pnlHeader.PerformLayout();
+        this.pnlActions.ResumeLayout(false);
+        this.pnlActions.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).EndInit();
         this.grpFilters.ResumeLayout(false);
         this.grpFilters.PerformLayout();
         this.ResumeLayout(false);
-        this.PerformLayout();
     }
 
+    private System.Windows.Forms.Panel pnlHeader;
     private System.Windows.Forms.Label lblTitle;
     private System.Windows.Forms.Label lblStats;
     private System.Windows.Forms.DataGridView dgvHistory;
+    private System.Windows.Forms.Panel pnlActions;
     private System.Windows.Forms.Button btnRefresh;
     private System.Windows.Forms.Button btnDeleteSelected;
     private System.Windows.Forms.Button btnClearAll;

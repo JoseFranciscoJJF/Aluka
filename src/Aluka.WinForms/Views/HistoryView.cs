@@ -1,6 +1,7 @@
 using Aluka.Application.DTOs;
 using Aluka.Application.Services;
 using Aluka.Domain.Enums;
+using Aluka.WinForms.UI;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aluka.WinForms.Views;
@@ -33,6 +34,29 @@ public partial class HistoryView : UserControl
         // Para evitar o warning CS4014, usamos _ =
         // =========================================================
         _ = LoadRuleFilterAsync();
+
+        BackColor = Theme.Colors.Background;
+        pnlHeader.BackColor = Theme.Colors.Background;
+        pnlHeader.Padding = new Padding(0, Theme.Spacing.S, 0, Theme.Spacing.S);
+        pnlActions.BackColor = Theme.Colors.Background;
+        pnlActions.Padding = new Padding(0, Theme.Spacing.S, 0, 0);
+
+        lblTitle.Font = Theme.Fonts.SubHeading;
+        lblTitle.ForeColor = Theme.Colors.TextPrimary;
+        lblStats.Font = Theme.Fonts.Caption;
+        lblStats.ForeColor = Theme.Colors.TextSecondary;
+
+        grpFilters.BackColor = Theme.Colors.Background;
+        grpFilters.Font = Theme.Fonts.Body;
+
+        Theme.StyleGrid(dgvHistory);
+
+        Theme.StyleSecondaryButton(btnRefresh);
+        Theme.StyleSecondaryButton(btnDeleteSelected);
+        Theme.StyleSecondaryButton(btnClearAll);
+
+        lblStatus.Font = Theme.Fonts.Caption;
+        lblStatus.ForeColor = Theme.Colors.TextSecondary;
     }
 
     public async Task RefreshAsync()
