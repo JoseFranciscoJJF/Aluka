@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <!-- Superseded by Views/RulesView, Views/AppsView, Views/HistoryView (single-window shell). Kept for reference, excluded from build. -->
+    <Compile Remove="_archive\**\*.cs" />
+    <Compile Remove="_archive\**\*.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Aluka.Domain\Aluka.Domain.csproj" />
     <ProjectReference Include="..\Aluka.Application\Aluka.Application.csproj" />
     <ProjectReference Include="..\Aluka.Infrastructure\Aluka.Infrastructure.csproj" />
