@@ -1,92 +1,16 @@
-﻿using Aluka.Application.DTOs;
-using Aluka.Application.Services;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace Aluka.WinForms;
 
 public partial class MainForm : Form
 {
     private readonly IServiceProvider _serviceProvider;
-    private readonly IAppService? _appService;
-    private readonly IRuleService? _ruleService;
-    private readonly IHistoryService? _historyService;
 
     public MainForm(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
         InitializeComponent();
-
-        // Resolver serviços
-        _appService = _serviceProvider.GetService<IAppService>();
-        _ruleService = _serviceProvider.GetService<IRuleService>();
-        _historyService = _serviceProvider.GetService<IHistoryService>();
     }
 
-    private async void MainForm_Load(object sender, EventArgs e)
+    private void MainForm_Load(object sender, EventArgs e)
     {
-        await LoadStatsAsync();
-    }
-
-    private async Task LoadStatsAsync()
-    {
-        try
-        {
-            if (_ruleService != null)
-            {
-                var rules = await _ruleService.GetAllRulesAsync();
-                var activeRules = rules.Count(r => r.EstaAtivo);
-                lblStats.Text = $"{activeRules} regras ativas | {rules.Count()} total";
-            }
-        }
-        catch
-        {
-            lblStats.Text = "Erro ao carregar estatísticas";
-        }
-    }
-
-    private void BtnRules_Click(object sender, EventArgs e)
-    {
-        var rulesForm = new RulesForm(_serviceProvider);
-        rulesForm.ShowDialog();
-    }
-
-    private void BtnApps_Click(object sender, EventArgs e)
-    {
-        var appsForm = new AppsForm(_serviceProvider);
-        appsForm.ShowDialog();
-    }
-
-    private void BtnHistory_Click(object sender, EventArgs e)
-    {
-        var historyForm = new HistoryForm(_serviceProvider);
-        historyForm.ShowDialog();
-    }
-
-    private async void BtnScanApps_Click(object sender, EventArgs e)
-    {
-        if (_appService == null)
-        {
-            MessageBox.Show("Serviço de aplicações não disponível.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        btnScanApps.Enabled = false;
-        toolStripStatusLabel.Text = "A varrer aplicações...";
-
-        try
-        {
-            await _appService.ScanAndUpdateAppsAsync();
-            toolStripStatusLabel.Text = "Varrimento concluído com sucesso!";
-            await LoadStatsAsync();
-        }
-        catch (Exception ex)
-        {
-            toolStripStatusLabel.Text = "Erro no varrimento";
-            MessageBox.Show($"Erro ao varrer aplicações: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-        finally
-        {
-            btnScanApps.Enabled = true;
-        }
     }
 }
